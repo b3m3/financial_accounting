@@ -18,6 +18,17 @@ document.addEventListener('DOMContentLoaded', () => {
     wrapp.append(item);
   };
 
+  const checkModalInput = () => {
+    modalBtn.classList.add('ban');
+    modalName.value = modalName.value.replace(/[0-9]/g, "");
+
+    if (modalName.value.length > 0 && modalNumber.value.length > 0) {
+        modalBtn.classList.remove('ban');
+      } else {
+        modalBtn.classList.add('ban');
+      }
+  };
+
   document.addEventListener('click', (e) => {
     if (e.target.classList.contains('category__btn')) {
       const thisBtn = e.target;
@@ -44,5 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
       modal.classList.remove('show-modal');
     }
   });
-  
+
+  document.addEventListener('input', () => {
+    checkModalInput();
+  });
 });
