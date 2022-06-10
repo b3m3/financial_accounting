@@ -102,6 +102,7 @@ body {
   display: inline-flex;
   align-items: center;
   flex-wrap: wrap;
+  gap: 1.25rem;
 }
 
 /* item-category */
@@ -128,7 +129,7 @@ body {
   margin: 0;
   border: none;
   outline: none;
-  padding: 0.1875rem 0.3125rem;
+  padding: 0.25rem 0.3125rem;
   color: rgb(255, 255, 255);
   background-color: rgba(255, 255, 255, 0.103);
 }
@@ -220,7 +221,7 @@ body {
   padding: 0.3125rem;
   opacity: 0;
   pointer-events: none;
-  transition: 0.8s ease-out;
+  transition: 0.4s ease-out;
 }
 .modal.show-modal {
   opacity: 1;
@@ -259,4 +260,8 @@ body {
 .modal__btn {
   width: 3.125rem;
   height: 1.875rem;
+}
+.modal__btn.ban {
+  pointer-events: none;
+  opacity: 0.4;
 }

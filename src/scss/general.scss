@@ -34,6 +34,7 @@ body {
     display: inline-flex;
     align-items: center;
     flex-wrap: wrap;
+    gap: rem(20);
   }
 }
 
@@ -63,7 +64,7 @@ body {
     margin: 0;
     border: none;
     outline: none;
-    padding: rem(3) rem(5);
+    padding: rem(4) rem(5);
     color: rgb(255, 255, 255);
     background-color: rgba(255, 255, 255, 0.103);
     &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
@@ -162,7 +163,7 @@ body {
 
   opacity: 0;
   pointer-events: none;
-  transition: .8s ease-out;
+  transition: .4s ease-out;
 
   &.show-modal {
     opacity: 1;
@@ -204,5 +205,10 @@ body {
   &__btn {
     width: rem(50);
     height: rem(30);
+
+    &.ban {
+      pointer-events: none;
+      opacity: .4;
+    }
   }
 }

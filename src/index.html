@@ -15,26 +15,26 @@
   <div class="app" id="app">
     <div class="app__wrapp">
 
-      <div class="category">
+      <div class="category income">
         <h2 class="category__title">Income</h2>
         <div class="category__wrapp">
           <div class="category__items">
             <div class="category__item item-category">
               <p class="item-category__name">Wages</p>
-              <input class='item-category__input' type="number" />
+              <input class='item-category__input item-input' type="number" />
             </div>
           </div>
           <button class='category__btn'>+ new</button>
         </div>
       </div>
 
-      <div class="category">
+      <div class="category expenses">
         <h2 class="category__title">Expenses</h2>
         <div class="category__wrapp">
           <div class="category__items">
             <div class="category__item item-category">
               <p class="item-category__name">Food</p>
-              <input class='item-category__input' type="number" />
+              <input class='item-category__input item-input' type="number" />
             </div>
           </div>
           <button class='category__btn'>+ new</button>
@@ -45,7 +45,7 @@
         <p class="saving__number saving__number remainder">0</p>
         <div class="saving__box">
           <p class="saving__precent"><span>0</span> %</p>
-          <input class="saving__range" type="range" />
+          <input class="saving__range" type="range" value="10" />
         </div>
         <p class="saving__number saving__number save">0</p>
       </div>
@@ -53,20 +53,20 @@
       <div class="wallet">
         <div class="wallet__row">
           <h5 class="wallet__subtitle">Month</h5>
-          <div class="wallet__number">0</div>
+          <div class="wallet__number month">0</div>
         </div>
         <div class="wallet__row">
           <h5 class="wallet__subtitle">Year</h5>
-          <div class="wallet__number">0</div>
+          <div class="wallet__number year">0</div>
         </div>
       </div>
 
-      <div class="modal show-modal">
+      <div class="modal">
         <div class="modal__body">
           <div class="modal__col">
-            <input class="modal__input" type="text" placeholder="Name" />
+            <input class="modal__input modal-name" type="text" placeholder="Name" />
             <span>=</span>
-            <input class="modal__input" type="number" placeholder="Value" />
+            <input class="modal__input modal-number" type="number" placeholder="Value" />
           </div>
           <div class="modal__col">
             <button class="modal__btn">Add</button>
