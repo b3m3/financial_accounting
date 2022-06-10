@@ -79,6 +79,7 @@ body {
   display: flex;
   align-items: center;
   height: 3rem;
+  min-height: rem(60);
   gap: calc(32px / 1280px * 100%);
 
   &__number {
@@ -91,13 +92,17 @@ body {
     justify-content: center;
     align-items: center;
   }
-  &__box {
+  &__col {
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding: 0 0 rem(10) 0;
+    gap: rem(5);
+    
+    &:nth-child(2) {
+      padding: 0 0 rem(10) 0;
+    }
   }
-  &__precent {
+  &__precent, &__subtitle {
     text-align: center;
     flex: 1 0 auto;
   }

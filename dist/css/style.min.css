@@ -142,6 +142,7 @@ body {
   display: flex;
   align-items: center;
   height: 3rem;
+  min-height: 3.75rem;
   gap: 2.5%;
 }
 .saving__number {
@@ -154,13 +155,16 @@ body {
   justify-content: center;
   align-items: center;
 }
-.saving__box {
+.saving__col {
   display: flex;
   flex-direction: column;
   height: 100%;
+  gap: 0.3125rem;
+}
+.saving__col:nth-child(2) {
   padding: 0 0 0.625rem 0;
 }
-.saving__precent {
+.saving__precent, .saving__subtitle {
   text-align: center;
   flex: 1 0 auto;
 }
