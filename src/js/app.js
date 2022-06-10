@@ -21,7 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       item.addEventListener('click', () => {
-        item.parentNode.remove();
+        item.parentNode.classList.add('del');
+
+        setTimeout(() => {
+          item.parentNode.remove();
+        }, 400);
       });
     });
   };
