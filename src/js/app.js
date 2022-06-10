@@ -7,6 +7,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalName = modal.querySelector('.modal-name');
   const modalNumber = modal.querySelector('.modal-number');
 
+  const delItem = () => {
+    const items = document.querySelectorAll('.item-category__name');
+
+    items.forEach(item => {
+      const parent = item.closest('.category');
+      const blockItems = parent.querySelectorAll('.category__item');
+
+      if (blockItems.length < 2) {
+        item.style.pointerEvents = 'none';
+      } else {
+        item.style.pointerEvents = 'all';
+      }
+
+      item.addEventListener('click', () => {
+        item.parentNode.remove();
+      });
+    });
+  };
+
   const createItem = (wrapp, name, value) => {
     const item = document.createElement('div');
     item.classList.add('category__item', 'item-category');
@@ -59,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   checkModalInput();
   calcValues();
+  delItem();
 
   document.addEventListener('click', (e) => {
     if (e.target.classList.contains('category__btn')) {
@@ -87,10 +107,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     calcValues();
+    delItem();
   });
 
   document.addEventListener('input', () => {
     checkModalInput();
     calcValues();
+    delItem();
   });
 });
