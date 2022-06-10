@@ -29,6 +29,37 @@ document.addEventListener('DOMContentLoaded', () => {
       }
   };
 
+  const calcValues = () => {
+    const inputs = document.querySelectorAll('.item-input');
+    const range = document.querySelector('input[type="range"]');
+    const rangeValue = document.querySelector('.saving__precent span');
+
+    const remainder = document.querySelector('.remainder');
+    const save = document.querySelector('.save');
+    const month = document.querySelector('.month');
+    const year = document.querySelector('.year');
+
+    let income = 0;
+    let expenses = 0;
+
+    inputs.forEach(input => {
+      if (input.closest('.income')) {
+        income += (+input.value);
+      } else {
+        expenses += (+input.value);
+      } 
+    });
+
+    remainder.textContent = income - expenses;
+    rangeValue.textContent = range.value;
+    save.textContent = Math.floor(+remainder.textContent / 100 * range.value);
+    month.textContent = remainder.textContent - save.textContent;
+    year.textContent = +save.textContent * 12;
+  };
+
+  checkModalInput();
+  calcValues();
+
   document.addEventListener('click', (e) => {
     if (e.target.classList.contains('category__btn')) {
       const thisBtn = e.target;
@@ -54,9 +85,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target === modal) {
       modal.classList.remove('show-modal');
     }
+
+    calcValues();
   });
 
   document.addEventListener('input', () => {
     checkModalInput();
+    calcValues();
   });
 });
