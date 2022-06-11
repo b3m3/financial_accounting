@@ -7,11 +7,44 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalName = modal.querySelector('.modal-name');
   const modalNumber = modal.querySelector('.modal-number');
 
+  const createItem = (wrapp, name, value) => {
+    const item = document.createElement('div');
+    item.classList.add('category__item', 'item-category');
+
+    item.innerHTML = `
+      <p class="item-category__name">${name}</p>
+      <input class='item-category__input item-input' type="number" value="${value}" />
+    `;
+    wrapp.append(item);
+  };
+
+  const getLStorageData = () => {
+    const wrapps = document.querySelectorAll('.category__items');
+    const range = document.querySelector('input[type="range"]');
+
+    range.value = localStorage.getItem('range');
+
+    for (const key in localStorage) {
+      const create = (className, wrappPosition) => 
+        key.split(' ')[0] === className ?
+        createItem(
+          wrapps[wrappPosition], 
+          localStorage[key].split(' ')[0], 
+          localStorage[key].split(' ')[1]) :
+        null;
+      
+      create('income', 0);
+      create('expenses', 1);
+    }
+  };
+
   const addDataToLStorage = () => {
     const items = document.querySelectorAll('.category__item');
     const range = document.querySelector('input[type="range"]');
 
-    localStorage.setItem('range', range.value);
+    range.addEventListener('input', () => {
+      localStorage.setItem('range', range.value);
+    });
 
     items.forEach(item => {
       const parent = item.closest('.category');
@@ -24,19 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  addDataToLStorage();
-
-  const createItem = (wrapp, name, value) => {
-    const item = document.createElement('div');
-    item.classList.add('category__item', 'item-category');
-
-    item.innerHTML = `
-      <p class="item-category__name">${name}</p>
-      <input class='item-category__input item-input' type="number" value="${value}" />
-    `;
-    wrapp.append(item);
-  };
-
   const checkModalInput = () => {
     modalBtn.classList.add('ban');
     modalName.value = modalName.value.replace(/[0-9]/g, "");
@@ -46,20 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         modalBtn.classList.add('ban');
       }
-  };
-
-  const checkQuantityItems = () => {
-    const categoryes = document.querySelectorAll('.category');
-
-    categoryes.forEach(category => {
-      const items = category.querySelectorAll('.item-category__name');
-
-      if (items.length < 2) {
-        items.forEach(el => el.classList.add('ban'));
-      } else {
-        items.forEach(el => el.classList.remove('ban'));
-      }
-    });
   };
 
   const calcValues = () => {
@@ -92,7 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   checkModalInput();
   calcValues();
-  checkQuantityItems();
+  addDataToLStorage();
+  getLStorageData();
+  setTimeout(() => modal.click(), 100);
 
   document.addEventListener('click', (e) => {
     if (e.target.classList.contains('category__btn')) {
@@ -100,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
       newBtns.forEach(btn => btn.classList.remove('this'));
       thisBtn.classList.add('this');
       modal.classList.add('show-modal');
+      modalBtn.classList.add('ban');
     }
 
     if (e.target === modalBtn) {
@@ -126,19 +135,16 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         e.target.parentNode.remove();
         calcValues();
-        checkQuantityItems();
-      }, 400);
+      }, 350);
     }
 
     calcValues();
-    checkQuantityItems();
     addDataToLStorage();
   });
 
   document.addEventListener('input', () => {
     checkModalInput();
     calcValues();
-    checkQuantityItems();
     addDataToLStorage();
   });
 });

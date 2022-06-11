@@ -321,6 +321,14 @@ body {
 .modal__btn {
   width: 3.125rem;
   height: 1.875rem;
+  border-radius: 0.1875rem;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.modal__btn:hover {
+  background-color: rgba(255, 255, 255, 0.98);
+}
+.modal__btn:active {
+  background-color: rgba(255, 255, 255, 0.8);
 }
 .modal__btn.ban {
   pointer-events: none;

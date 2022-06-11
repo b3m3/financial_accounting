@@ -269,6 +269,16 @@ body {
   &__btn {
     width: rem(50);
     height: rem(30);
+    border-radius: rem(3);
+    background-color: rgba(255, 255, 255, .9);
+
+    &:hover {
+      background-color: rgba(255, 255, 255, .98);
+    }
+
+    &:active {
+      background-color: rgba(255, 255, 255, .8);
+    }
 
     &.ban {
       pointer-events: none;
