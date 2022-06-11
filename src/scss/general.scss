@@ -18,6 +18,9 @@
     opacity: 1;
     transform: scale(1) rotate(0);
   }
+  50% {
+    opacity: .1;
+  }
   100% {
     opacity: 0;
     transform: scale(0) rotate(-90deg);
@@ -85,6 +88,10 @@ body {
     }
     &:hover {
       color: rgba(255, 0, 0, 0.75);
+    }
+
+    &.ban {
+      pointer-events: none;
     }
   }
   &__input {

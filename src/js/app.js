@@ -7,28 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalName = modal.querySelector('.modal-name');
   const modalNumber = modal.querySelector('.modal-number');
 
-  const delItem = () => {
-    const items = document.querySelectorAll('.item-category__name');
-
-    items.forEach(item => {
-      const parent = item.closest('.category');
-      const blockItems = parent.querySelectorAll('.category__item');
-
-      if (blockItems.length < 2) {
-        item.style.pointerEvents = 'none';
-      } else {
-        item.style.pointerEvents = 'all';
-      }
-
-      item.addEventListener('click', () => {
-        item.parentNode.classList.add('del');
-
-        setTimeout(() => {
-          item.parentNode.remove();
-        }, 400);
-      });
-    });
-  };
 
   const createItem = (wrapp, name, value) => {
     const item = document.createElement('div');
@@ -52,6 +30,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }
   };
 
+  const checkQuantityItems = () => {
+    const categoryes = document.querySelectorAll('.category');
+
+    categoryes.forEach(category => {
+      const items = category.querySelectorAll('.item-category__name');
+      
+      if (items.length < 2) {
+        items.forEach(el => el.classList.add('ban'));
+      } else {
+        items.forEach(el => el.classList.remove('ban'));
+      }
+    });
+  };
+
   const calcValues = () => {
     const inputs = document.querySelectorAll('.item-input');
     const range = document.querySelector('input[type="range"]');
@@ -59,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const remainder = document.querySelector('.remainder');
     const save = document.querySelector('.save');
-    const month = document.querySelector('.month');
+    const free = document.querySelector('.month');
     const year = document.querySelector('.year');
 
     let income = 0;
@@ -75,14 +67,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     remainder.textContent = income - expenses;
     rangeValue.textContent = range.value;
-    save.textContent = Math.floor(+remainder.textContent / 100 * range.value);
-    month.textContent = remainder.textContent - save.textContent;
-    year.textContent = +save.textContent * 12;
+    save.textContent = parseInt(+remainder.textContent / 100 * range.value);
+    free.textContent = parseInt(remainder.textContent - save.textContent);
+    year.textContent = parseInt(+save.textContent * 12);
   };
 
   checkModalInput();
   calcValues();
-  delItem();
+  checkQuantityItems();
 
   document.addEventListener('click', (e) => {
     if (e.target.classList.contains('category__btn')) {
@@ -110,13 +102,21 @@ document.addEventListener('DOMContentLoaded', () => {
       modal.classList.remove('show-modal');
     }
 
+    if (e.target.classList.contains('item-category__name')) {
+      e.target.parentNode.classList.add('del');
+
+      setTimeout(() => {
+        e.target.parentNode.remove();
+        checkQuantityItems();
+      }, 400);
+    }
+
     calcValues();
-    delItem();
+    checkQuantityItems();
   });
 
   document.addEventListener('input', () => {
     checkModalInput();
     calcValues();
-    delItem();
   });
 });
