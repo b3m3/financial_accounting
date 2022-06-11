@@ -7,6 +7,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalName = modal.querySelector('.modal-name');
   const modalNumber = modal.querySelector('.modal-number');
 
+  const addDataToLStorage = () => {
+    const items = document.querySelectorAll('.category__item');
+    const range = document.querySelector('input[type="range"]');
+
+    localStorage.setItem('range', range.value);
+
+    items.forEach(item => {
+      const parent = item.closest('.category');
+      const title = item.querySelector('.item-category__name');
+      const value = item.querySelector('.item-category__input');
+
+      const getParentClass = parent.className.split(' ')[1];
+
+      localStorage.setItem(`${getParentClass} ${title.textContent}`, `${title.textContent} ${value.value}`);
+    });
+  };
+
+  addDataToLStorage();
 
   const createItem = (wrapp, name, value) => {
     const item = document.createElement('div');
@@ -35,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     categoryes.forEach(category => {
       const items = category.querySelectorAll('.item-category__name');
-      
+
       if (items.length < 2) {
         items.forEach(el => el.classList.add('ban'));
       } else {
@@ -107,16 +125,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
       setTimeout(() => {
         e.target.parentNode.remove();
+        calcValues();
         checkQuantityItems();
       }, 400);
     }
 
     calcValues();
     checkQuantityItems();
+    addDataToLStorage();
   });
 
   document.addEventListener('input', () => {
     checkModalInput();
     calcValues();
+    checkQuantityItems();
+    addDataToLStorage();
   });
 });
