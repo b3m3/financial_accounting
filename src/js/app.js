@@ -130,11 +130,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (e.target.classList.contains('item-category__name')) {
+      const income = e.target.closest('.income');
+      const expenses = e.target.closest('.category');
+
       e.target.parentNode.classList.add('del');
+
+      const delItemFromLStorage = (parent, categoryName) => {
+        for (const key in localStorage) {
+          if (key.split(' ')[1] == e.target.textContent && parent) {
+            localStorage.removeItem(`${categoryName} ${e.target.textContent}`);
+          }
+        }
+      };
 
       setTimeout(() => {
         e.target.parentNode.remove();
         calcValues();
+        delItemFromLStorage(income, 'income');
+        delItemFromLStorage(expenses, 'expenses');
       }, 350);
     }
 
