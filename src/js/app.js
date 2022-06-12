@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalName = modal.querySelector('.modal-name');
   const modalNumber = modal.querySelector('.modal-number');
 
+  const range = document.querySelector('input[type="range"]');
+
   const createItem = (wrapp, name, value) => {
     const item = document.createElement('div');
     item.classList.add('category__item', 'item-category');
@@ -20,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const getLStorageData = () => {
     const wrapps = document.querySelectorAll('.category__items');
-    const range = document.querySelector('input[type="range"]');
 
     range.value = localStorage.getItem('range');
 
@@ -40,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const addDataToLStorage = () => {
     const items = document.querySelectorAll('.category__item');
-    const range = document.querySelector('input[type="range"]');
 
     range.addEventListener('input', () => {
       localStorage.setItem('range', range.value);
@@ -70,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const calcValues = () => {
     const inputs = document.querySelectorAll('.item-input');
-    const range = document.querySelector('input[type="range"]');
     const rangeValue = document.querySelector('.saving__precent span');
 
     const remainder = document.querySelector('.remainder');
@@ -100,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
   calcValues();
   addDataToLStorage();
   getLStorageData();
-  setTimeout(() => modal.click(), 100);
+  setTimeout(() => modal.click(), 130);
 
   document.addEventListener('click', (e) => {
     if (e.target.classList.contains('category__btn')) {

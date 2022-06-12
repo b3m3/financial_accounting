@@ -8,18 +8,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" type="image/x-icon" href="@img/favicon.svg">
   <link rel="stylesheet" href="css/style.min.css">
-  <title>app</title>
+  <title>Financial Accounting</title>
 </head>
 
 <body>
   <div class="app" id="app">
     <div class="app__wrapp">
 
-      <div class="category income">
+      @@include('html/blocks/category.html', {"class": "income","title": "Income"})
+      @@include('html/blocks/category.html', {"class": "expenses","title": "Expenses"})
+
+      <!-- <div class="category income">
         <h2 class="category__title">Income</h2>
         <div class="category__wrapp">
           <div class="category__items">
-            <!-- items -->
+
           </div>
           <button class='category__btn'>+ item</button>
         </div>
@@ -29,11 +32,11 @@
         <h2 class="category__title">Expenses</h2>
         <div class="category__wrapp">
           <div class="category__items">
-            <!-- items -->
+
           </div>
           <button class='category__btn'>+ item</button>
         </div>
-      </div>
+      </div> -->
 
       <div class="saving">
         <div class="saving__col">
